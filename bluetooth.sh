@@ -52,6 +52,7 @@ disconnect_bluetooth() {
 
 # меню
 while true; do
+    clear
     echo "1. Включить Bluetooth"
     echo "2. Выключить Bluetooth"
     echo "3. Сканировать устройства"
@@ -70,7 +71,7 @@ while true; do
         5) pair_device ;;
         6) connect_bluetooth ;;
         7) disconnect_bluetooth ;;
-        8) echo "Выход..."; break ;;
+        8) echo "Выход..."; clear; setmenu; exit ;;
         *) echo "Введена неверная цифра. Ты промахнулся?" ;;
 
     esac

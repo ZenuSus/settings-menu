@@ -16,6 +16,7 @@ if [ -d "$BATTERY_PATH" ]; then
     ENERGY_FULL_DESIGN=$(cat "$BATTERY_PATH/energy_full_design" 2>/dev/null)
     
     # Вывод инфы
+    clear
     echo "Статус батареи: $STATUS"
     echo "Текущий заряд: $CAPACITY%"
     

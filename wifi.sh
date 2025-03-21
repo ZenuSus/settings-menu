@@ -29,6 +29,7 @@ wifi_off() {
 
 # Основное меню
 while true; do
+	clear
     echo "Имя сети: $(iwconfig wlan0 | grep 'ESSID' | awk -F'"' '{print $2}')"
 echo "Уровень сигнала: $(iwconfig wlan0 | grep 'Quality' | awk -F'=' '{print $2}' | awk '{print $1}')"
     echo " "
@@ -44,7 +45,7 @@ echo "Уровень сигнала: $(iwconfig wlan0 | grep 'Quality' | awk -F'
         2) connect_wifi ;;
         3) wifi_on ;;
         4) wifi_off ;;
-        5) echo "Выход..."; break ;;
+        5) echo "Выход..."; clear; setmenu; exit;;
         *) echo "Введена неверная цифра. Ты промахнулся?" ;;
     esac
 done
