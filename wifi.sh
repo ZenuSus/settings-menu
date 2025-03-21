@@ -17,6 +17,7 @@ connect_wifi() {
 # Функция для включения Wi-Fi
 wifi_on() {
     nmcli radio wifi on
+    sudo systemctl start NetworkManager.service
     echo "Wi-Fi включен."
 }
 
