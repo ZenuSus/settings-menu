@@ -29,6 +29,9 @@ wifi_off() {
 
 # Основное меню
 while true; do
+    echo "Имя сети: $(iwconfig wlan0 | grep 'ESSID' | awk -F'"' '{print $2}')"
+echo "Уровень сигнала: $(iwconfig wlan0 | grep 'Quality' | awk -F'=' '{print $2}' | awk '{print $1}')"
+    echo " "
     echo "1 - Сканировать сети"
     echo "2 - Подключиться к сети"
     echo "3 - Включить Wi-Fi"
