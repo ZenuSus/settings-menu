@@ -1,17 +1,18 @@
 # settings-menu
-  ## Основная информация
-Это простой менеджер настроек для linux прямо в терминале. В нём можно управлять bluetooth, wi-fi, смотреть информацию о батарее и т.д. Я не знаю что тут ещё писать, так что читай дальше (там про установку вроде)
 
- ## Установка
-1. Клонируйте репозиторий (`git clone https://github.com/ZenuSus/settings-menu`)
-2. Перейдите в папку, куда склонирован репозиторий (`cd $HOME/settings-menu`)
-3. Запустите скрипт настройки (`bash setup.sh`)
-4. Теперь вы можете запустить скрипт введя команду `setmenu`
+  ## Info
+This is simple settings shell app for linux. Here u can change wifi, bluetooth and etc, but ts is workin a little bad 🤏
+
+ ## Installing
+1. Clone repo (`git clone https://github.com/zenusus/settings-menu`)
+2. Go to folder, wheres this cloned repo located
+3. Run the install script (`bash setup.sh`)
+4. Now, you can run this by using the `setmenu` command
 
 > [!NOTE]
-> Не забудьте установить зависимости, а именно: `nmcli`, `fastfetch`.
+> Don't forget to install dependencies: `nmcli` and `fastfetch`.
 
 
- ## Скриншоты
-![Скриншот](/screenshots/sosal.jpg)
+ ## Screenshoot
+![Screenshoot](/screenshots/sosal.jpg)
 
