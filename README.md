@@ -14,5 +14,5 @@ This is simple settings shell app for linux. Here u can change wifi, bluetooth a
 
 
  ## Screenshoot
-![Screenshoot](/screenshots/sosal.jpg)
+![Screenshoot](/screenshots/sosal.png)
 
