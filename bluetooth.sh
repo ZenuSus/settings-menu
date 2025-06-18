@@ -1,67 +1,78 @@
-#!/bin/bash
+#!/bin/sh
 
-# Функция для включения блютуза
+# On
 bluetooth_on() {
+    clear
     sudo systemctl start bluetooth
-    echo "Bluetooth включен."
+    echo "✅ Bluetooth is on!."
 }
 
-# Функция для выключения блютуза
+# Off
 bluetooth_off() {
+    clear
     sudo systemctl stop bluetooth
-    echo "Bluetooth выключен."
+    echo "✅ Bluetooth is off."
 }
 
 
-# Функция для сканирования
+# Scan
 scan_bluetooth() {
-    echo "Сканирование устройств, это займёт 10 секунд..."
+    clear
+    echo "⏳ Scanning devices, wait a bit..."
     bluetoothctl scan on &
     SCAN_PID=$!
-    sleep 10  # те самые 10 секунд
+    sleep 10
     kill $SCAN_PID
-    echo "Сканирование завершено."
+    clear
+    echo " "
+    bluetoothctl devices
+    echo " "
 }
 
-# Функция для просмотра найденных
+# Show finded
 list_devices() {
-    echo "Найденные устройства:"
+    clear
+    echo " 🔎 Finded devices:"
+    echo " "
     bluetoothctl devices
 }
 
-# Функция для сопряжения
+# Pair
 pair_device() {
-    read -p "Введите MAC-адрес устройства: " mac_address
+    clear
+    read -p "Enter device's MAC-adress: " mac_address
     bluetoothctl pair "$mac_address"
 }
 
-# Функция для подключения
+# Connect
 connect_bluetooth() {
-    read -p "Введите MAC-адрес устройства: " mac_address
-    echo "Подключение..."
+    clear
+    read -p "Enter device's MAC-adress: " mac_address
+    echo "⏳ Connecting..."
     bluetoothctl connect "$mac_address"
 }
 
-# Функция для отключения
+# Disconnect
 disconnect_bluetooth() {
-    read -p "Введите MAC-адрес устройства: " mac_address
-    echo "Отключение..."
+    clear
+    read -p "Enter device's MAC-adress: " mac_address
+    echo "⏳ Disconnecting..."
     bluetoothctl disconnect "$mac_address"
 }
 
 
-# меню
+# Menu
 while true; do
-    clear
-    echo "1. Включить Bluetooth"
-    echo "2. Выключить Bluetooth"
-    echo "3. Сканировать устройства"
-    echo "4. Просмотреть найденные устройства"
-    echo "5. Сопряжение с устройством"
-    echo "6. Подключиться к устройству"
-    echo "7. Отключиться от устройства"
-    echo "8. Выход"
-    read -p "Выберите действие (1-8): " choice
+    echo "1. ✅ Turn on bluetooth"
+    echo "2. ❌ Turn off bluetooth"
+    echo "3. 🔎 Scan devices"
+    echo "4. 👀 View devices (finded)"
+    echo "5. 📡 Pair"
+    echo "6. 📲 Connect (to paired)"
+    echo "7. ✂️ Disconnect"
+    echo "8. 🚪 Exit"
+    echo " "
+    read -p "Choose the action (1-8):: " choice
 
     case $choice in
         1) bluetooth_on ;;
@@ -71,8 +82,8 @@ while true; do
         5) pair_device ;;
         6) connect_bluetooth ;;
         7) disconnect_bluetooth ;;
-        8) echo "Выход..."; clear; setmenu; exit ;;
-        *) echo "Введена неверная цифра. Ты промахнулся?" ;;
+        8) echo "Exiting..."; clear; setmenu; exit ;;
+        *) echo "❌ Wrong number!" ;;
 
     esac
 done

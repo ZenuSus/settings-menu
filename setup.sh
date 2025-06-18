@@ -1,4 +1,9 @@
-echo "Настройка скрипта, пожалуйста подождите..."
+echo "⏳ Loading..."
+sleep 1
+echo " "
 sudo cp setmenu.sh /usr/local/bin/setmenu
 sleep 1
-echo "Настройка завершена!"
+clear
+echo "✅ All done!"
+sleep 1
+exit 

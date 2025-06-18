@@ -1,57 +1,70 @@
 #!/bin/bash
 
-echo "Добро пожаловать в менеджер настроек. Введите необходимую цифру для продолжения. "
-echo "1 - Wi-Fi Подключения"
-echo "2 - Bluetooth Подключения"
-echo "3 - Управление Батареей"
-echo "4 - Настройки Цвета"
-echo "5 - О Системе (Fastfetch)"
-echo "6 - Выход"
+echo "Setmenu 2.1"
 echo " "
-echo "Версия: 1.2"
+echo "1 - 🛜 Wi-Fi"
+echo "2 - 💠 Bluetooth"
+echo "3 - 🔋 Battery"
+echo "4 - 🖥 Display"
+echo "5 - ℹ️ About system"
+echo "6 - 🚪 Exit"
+echo " "
+echo "Enter option number:"
 
 read choice
 
 case $choice in
     1)
-        echo "Запуск wi-fi менеджера..."
+        echo " "
+        echo "⌛️ Loading..."
+        sleep 1
 	clear
         # Wi-Fi
-        bash $HOME/settings-menu/wifi.sh
+        sh $HOME/settings-menu/wifi.sh
         ;;
     2)
-        echo "Запуск bluetooth менеджера..."
+        echo " "
+        echo "⌛️ Loading..."
+        sleep 1
 	clear
         # Bluetooth
-        bash $HOME/settings-menu/bluetooth.sh
+        sh $HOME/settings-menu/bluetooth.sh
         ;;
     3)
-        echo "Запуск менеджера батареи..."
+        echo " "
+        echo "⌛️ Loading..."
+        sleep 1
 	clear
-        # Батарея
-        bash $HOME/settings-menu/battery.sh
+        # Battery
+        sh $HOME/settings-menu/battery.sh
         ;;
     4)
-        echo "Запуск цветовых настроек временно недоступен."
-        # Цвет
+        echo " "
+        echo "❌ Temporary unavailable"
+        sleep 1
+        clear
+        # Display
 	exit 0
         ;;
 
     5)
-	echo "Запуск fastfetch..."
+        echo " "
+	    echo "⌛️ Loading..."
 	clear
-        # Fastfetch
-	fastfetch
+        # About
+	sh $HOME/settings-menu/about.sh
 	;;
    
     6)
-	echo "Выход..."
+        echo " "
+	    echo "Exiting..."
 	clear
-	# Выход
+	    # Exit
 	exit 0
 	;;
 
     *)
-        echo "Введена неверная цифра. Ты промахнулся?"
+        echo ""
+        echo "❌ Wrong number"
         ;;
 esac

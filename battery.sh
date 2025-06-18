@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Путь к информации о батарее (нахера я делаю комментарии в коде?)
 BATTERY_PATH="/sys/class/power_supply/BAT0"
@@ -17,14 +17,15 @@ if [ -d "$BATTERY_PATH" ]; then
     
     # Вывод инфы
     clear
-    echo "Статус батареи: $STATUS"
-    echo "Текущий заряд: $CAPACITY%"
+    echo "🔌 Battery status: $STATUS"
+    echo "🔋 Capacity: $CAPACITY%"
+    echo " "
     
     if [ -n "$ENERGY_FULL" ] && [ -n "$ENERGY_FULL_DESIGN" ]; then
-        echo "Ёмкость батареи: $ENERGY_FULL / $ENERGY_FULL_DESIGN mWh"
+        echo "⚡️ Battery energy: $ENERGY_FULL / $ENERGY_FULL_DESIGN mWh"
     else
-        echo "Информация о ёмкости недоступна :("
+        echo "❌ Cannot get info :("
     fi
 else
-	echo "Батарея не найдена (куда подевалась?)"
+	echo "❌ Battery not found! (wtf?)"
 fi

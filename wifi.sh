@@ -1,51 +1,67 @@
-#!/bin/bash
+#!/bin/sh
 
-# Функция для сканирования Wi-Fi сетей
+# Scanning
 scan_wifi() {
-    echo "Сканирование сетей, подождите..."
+    clear
+    echo "⏳ Scanning networks, wait a bit..."
+    sleep 3
+    clear
+    echo " "
     nmcli dev wifi
+    echo " "
 }
 
-# Функция для подключения к Wi-Fi сети
+# Connect
 connect_wifi() {
-    read -p "Введите имя сети (SSID): " ssid
-    read -s -p "Введите пароль сети: " password
-    echo
+    clear
+    read -p "Enter network name (SSID): " ssid
+    read -s -p "Enter network password: " password
+    sleep 0.5
+    clear
+    echo "⏳ Connecting..."
+    sleep 1
+    clear
     nmcli dev wifi connect "$ssid" password "$password"
+    sleep 1
+    clear
 }
 
-# Функция для включения Wi-Fi
+# Turn on
 wifi_on() {
-    nmcli radio wifi on
     sudo systemctl start NetworkManager.service
-    echo "Wi-Fi включен."
+    nmcli radio wifi on
+    echo "✅ Wi-Fi is on"
+    sleep 1
+    clear
 }
 
-# Функция для выключения Wi-Fi
+# Turn off
 wifi_off() {
     nmcli radio wifi off
-    echo "Wi-Fi выключен."
+    echo "✅ Wi-Fi is off"
+    sleep 1
+    clear
 }
 
-# Основное меню
+# Main menu
 while true; do
-	clear
-    echo "Имя сети: $(iwconfig wlan0 | grep 'ESSID' | awk -F'"' '{print $2}')"
-echo "Уровень сигнала: $(iwconfig wlan0 | grep 'Quality' | awk -F'=' '{print $2}' | awk '{print $1}')"
     echo " "
-    echo "1 - Сканировать сети"
-    echo "2 - Подключиться к сети"
-    echo "3 - Включить Wi-Fi"
-    echo "4 - Выключить Wi-Fi"
-    echo "5 - Выход"
-    read -p "Выберите действие (1-5): " choice
+    echo "🛜 Network name: $(iwconfig wlan0 2>/dev/null | grep 'ESSID' | awk -F'"' '{print $2}')"
+    echo "📶 Signal strength: $(iwconfig wlan0 2>/dev/null | grep 'Quality' | awk -F'=' '{print $2}' | awk '{print $1}')"
+    echo " "
+    echo "1 - 🔎 Scan networks"
+    echo "2 - 📡 Connect to Wi-Fi"
+    echo "3 - ✅ Turn on Wi-Fi"
+    echo "4 - ❌ Turn off Wi-Fi"
+    echo "5 - 🚪 Exit"
+    read -p "Choose the action (1-5): " choice
 
     case $choice in
         1) scan_wifi ;;
         2) connect_wifi ;;
         3) wifi_on ;;
         4) wifi_off ;;
-        5) echo "Выход..."; clear; setmenu; exit;;
-        *) echo "Введена неверная цифра. Ты промахнулся?" ;;
+        5) echo "Exit"; clear; exit ;;
+        *) echo "Wrong number!"; sleep 1 ;;
     esac
 done
